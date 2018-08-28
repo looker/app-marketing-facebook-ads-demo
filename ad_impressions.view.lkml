@@ -91,12 +91,13 @@ view: age_and_gender_base_fb_adapter {
   }
   dimension: age {
     type: string
+    sql: "unknown" ;;
   }
 
   dimension: gender_raw {
     hidden: yes
     type: string
-    sql: ${TABLE}.gender ;;
+    sql: "unknown" ;;
   }
 
   dimension: gender {
@@ -139,7 +140,7 @@ explore: ad_impressions_age_and_gender_fb_adapter {
 
 view: ad_impressions_age_and_gender_fb_adapter {
   extends: [ad_impressions_fb_adapter, age_and_gender_base_fb_adapter]
-  sql_table_name:  {{ fact.facebook_ads_schema._sql }}.ads_insights_age_and_gender ;;
+  sql_table_name:  {{ fact.facebook_ads_schema._sql }}.ads_insights ;;
 }
 
 view: hour_base_fb_adapter {
@@ -153,6 +154,7 @@ view: hour_base_fb_adapter {
   dimension: hourly_stats_aggregated_by_audience_time_zone {
     hidden: yes
     type: string
+    sql: '12:00' ;;
   }
 
   dimension: hour {
@@ -181,7 +183,7 @@ explore: ad_impressions_hour_fb_adapter {
 
 view: ad_impressions_hour_fb_adapter {
   extends: [ad_impressions_fb_adapter, hour_base_fb_adapter]
-  sql_table_name:  {{ fact.facebook_ads_schema._sql }}.ads_insights_hour ;;
+  sql_table_name:  {{ fact.facebook_ads_schema._sql }}.ads_insights ;;
 }
 
 view: platform_and_device_base_fb_adapter {
@@ -198,6 +200,7 @@ view: platform_and_device_base_fb_adapter {
   dimension: impression_device {
     hidden: yes
     type: string
+    sql: 'desktop' ;;
   }
 
   dimension: device_type {
@@ -222,7 +225,7 @@ view: platform_and_device_base_fb_adapter {
   dimension: platform_position_raw {
     hidden: yes
     type: string
-    sql: ${TABLE}.platform_position ;;
+    sql: "feed" ;;
   }
 
   dimension: platform_position {
@@ -275,7 +278,7 @@ view: platform_and_device_base_fb_adapter {
   dimension: publisher_platform_raw {
     hidden: yes
     type: string
-    sql: ${TABLE}.publisher_platform ;;
+    sql: "facebook" ;;
   }
 
   dimension: publisher_platform {
@@ -323,18 +326,6 @@ explore: ad_impressions_platform_and_device_fb_adapter {
 view: ad_impressions_platform_and_device_fb_adapter {
   extends: [ad_impressions_fb_adapter, platform_and_device_base_fb_adapter]
   sql_table_name:  {{ fact.facebook_ads_schema._sql }}.ads_insights ;;
-
-  dimension: publisher_platform_raw {
-    sql: "facebook" ;;
-  }
-
-  dimension: platform_position_raw {
-    sql: "feed" ;;
-  }
-
-  dimension: impression_device {
-    sql: "desktop" ;;
-  }
 }
 
 view: region_base_fb_adapter {
@@ -350,10 +341,12 @@ view: region_base_fb_adapter {
   dimension: country {
     type: string
     map_layer_name: countries
+    sql: "US" ;;
   }
 
   dimension: region {
     type: string
+    sql: "California" ;;
   }
 
   dimension: state {
@@ -383,7 +376,7 @@ explore: ad_impressions_geo_fb_adapter {
 
 view: ad_impressions_geo_fb_adapter {
   extends: [ad_impressions_fb_adapter, region_base_fb_adapter]
-  sql_table_name:  {{ fact.facebook_ads_schema._sql }}.ads_insights_region ;;
+  sql_table_name:  {{ fact.facebook_ads_schema._sql }}.ads_insights ;;
 }
 
 view: actions_fb_adapter {
@@ -393,7 +386,7 @@ view: actions_fb_adapter {
 
 view: actions_age_and_gender_fb_adapter {
   extends: [actions_fb_adapter, age_and_gender_base_fb_adapter]
-  sql_table_name:  {{ actions.facebook_ads_schema._sql }}.ads_insights_age_and_gender_actions ;;
+  sql_table_name:  {{ actions.facebook_ads_schema._sql }}.ads_insights_actions ;;
 
   dimension: age {
     hidden: yes
@@ -405,7 +398,7 @@ view: actions_age_and_gender_fb_adapter {
 
 view: actions_hour_fb_adapter {
   extends: [actions_fb_adapter, hour_base_fb_adapter]
-  sql_table_name:  {{ actions.facebook_ads_schema._sql }}.ads_insights_hour_actions ;;
+  sql_table_name:  {{ actions.facebook_ads_schema._sql }}.ads_insights_actions ;;
 
   dimension: hour {
     hidden: yes
@@ -425,23 +418,11 @@ view: actions_platform_and_device_fb_adapter {
   dimension: publisher_platform {
     hidden: yes
   }
-
-  dimension: publisher_platform_raw {
-    sql: "facebook" ;;
-  }
-
-  dimension: platform_position_raw {
-    sql: "feed" ;;
-  }
-
-  dimension: impression_device {
-    sql: "desktop" ;;
-  }
 }
 
 view: actions_region_fb_adapter {
   extends: [actions_fb_adapter, region_base_fb_adapter]
-  sql_table_name:  {{ actions.facebook_ads_schema._sql }}.ads_insights_region_actions ;;
+  sql_table_name:  {{ actions.facebook_ads_schema._sql }}.ads_insights_actions ;;
 
   dimension: country {
     hidden: yes
