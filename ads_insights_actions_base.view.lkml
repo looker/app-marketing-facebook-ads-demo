@@ -31,7 +31,7 @@ view: ads_insights_actions_base_fb_adapter {
   dimension: ad_id {
     hidden: yes
     type: string
-    sql: CAST(${TABLE}.ad_id AS STRING) ;;
+    sql: CAST(${TABLE}.ad_id AS STRING)  ;;
   }
 
   dimension_group: date {
