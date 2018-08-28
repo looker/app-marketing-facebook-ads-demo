@@ -322,7 +322,19 @@ explore: ad_impressions_platform_and_device_fb_adapter {
 
 view: ad_impressions_platform_and_device_fb_adapter {
   extends: [ad_impressions_fb_adapter, platform_and_device_base_fb_adapter]
-  sql_table_name:  {{ fact.facebook_ads_schema._sql }}.ads_insights_platform_and_device ;;
+  sql_table_name:  {{ fact.facebook_ads_schema._sql }}.ads_insights ;;
+
+  dimension: publisher_platform_raw {
+    sql: "facebook" ;;
+  }
+
+  dimension: platform_position_raw {
+    sql: "feed" ;;
+  }
+
+  dimension: impression_device {
+    sql: "desktop" ;;
+  }
 }
 
 view: region_base_fb_adapter {
@@ -402,7 +414,7 @@ view: actions_hour_fb_adapter {
 
 view: actions_platform_and_device_fb_adapter {
   extends: [actions_fb_adapter, platform_and_device_base_fb_adapter]
-  sql_table_name:  {{ actions.facebook_ads_schema._sql }}.ads_insights_platform_and_device_actions ;;
+  sql_table_name:  {{ actions.facebook_ads_schema._sql }}.ads_insights_actions ;;
 
   dimension: device_type {
     hidden: yes
@@ -412,6 +424,18 @@ view: actions_platform_and_device_fb_adapter {
   }
   dimension: publisher_platform {
     hidden: yes
+  }
+
+  dimension: publisher_platform_raw {
+    sql: "facebook" ;;
+  }
+
+  dimension: platform_position_raw {
+    sql: "feed" ;;
+  }
+
+  dimension: impression_device {
+    sql: "desktop" ;;
   }
 }
 
