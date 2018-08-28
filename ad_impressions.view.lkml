@@ -1,4 +1,3 @@
-include: "adcreative.view"
 include: "ads_insights_actions_base.view"
 include: "ads_insights_base.view"
 
@@ -29,13 +28,6 @@ explore: ad_impressions_base_fb_adapter {
     type: left_outer
     sql_on: ${fact.ad_id} = ${ad.id} ;;
     relationship: many_to_one
-  }
-
-  join: adcreative {
-    from: adcreative_fb_adapter
-    type: left_outer
-    sql_on: ${ad.creative_id} = ${adcreative.id} ;;
-    relationship: one_to_one
   }
 
   join: actions {

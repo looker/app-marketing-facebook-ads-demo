@@ -33,7 +33,7 @@ view: ad_fb_adapter {
   dimension: adset_id {
     hidden: yes
     type: number
-    sql: ${TABLE}.adset_id ;;
+    sql: CAST(${TABLE}.adset_id AS STRING) ;;
   }
 
   dimension: effective_status {

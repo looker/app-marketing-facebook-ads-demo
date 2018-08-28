@@ -26,7 +26,7 @@ view: campaign_fb_adapter {
   dimension: account_id {
     hidden: yes
     type: number
-    sql: ${TABLE}.account_id ;;
+    sql: CAST(${TABLE}.account_id AS STRING) ;;
   }
 
   dimension: effective_status {

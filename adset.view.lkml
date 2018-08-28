@@ -26,6 +26,7 @@ view: adset_fb_adapter {
   dimension: campaign_id {
     hidden: yes
     type: number
+    sql: CAST(${TABLE}.campaign_id AS STRING) ;;
   }
 
   dimension: effective_status {

@@ -8,6 +8,7 @@ view: ads_insights_base_fb_adapter {
   dimension: account_id {
     hidden: yes
     type: string
+    sql: CAST(${TABLE}.account_id AS STRING) ;;
   }
 
   dimension: account_id_string {
@@ -22,6 +23,7 @@ view: ads_insights_base_fb_adapter {
   dimension: ad_id {
     hidden: yes
     type: string
+    sql: CAST(${TABLE}.ad_id AS STRING) ;;
   }
 
   dimension: ad_name {
@@ -31,6 +33,7 @@ view: ads_insights_base_fb_adapter {
   dimension: adset_id {
     hidden: yes
     type: string
+    sql: CAST(${TABLE}.adset_id AS STRING) ;;
   }
 
   dimension: adset_id_string {
@@ -45,6 +48,7 @@ view: ads_insights_base_fb_adapter {
   dimension: campaign_id {
     hidden: yes
     type: string
+    sql: CAST(${TABLE}.campaign_id AS STRING) ;;
   }
 
   dimension: campaign_id_string {
