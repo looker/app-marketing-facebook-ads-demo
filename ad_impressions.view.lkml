@@ -9,6 +9,13 @@ explore: ad_impressions_base_fb_adapter {
   label: "Ad Impressions"
   view_label: "Ad Impressions"
 
+  join: account {
+    from: account_fb_adapter
+    type: left_outer
+    sql_on: ${fact.account_id} = ${account.id} ;;
+    relationship: many_to_one
+  }
+
   join: campaign {
     from: campaign_fb_adapter
     type: left_outer
