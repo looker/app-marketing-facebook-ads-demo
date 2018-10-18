@@ -98,13 +98,12 @@ view: age_and_gender_base_fb_adapter {
   }
   dimension: age {
     type: string
-    sql: "unknown" ;;
   }
 
   dimension: gender_raw {
     hidden: yes
     type: string
-    sql: "unknown" ;;
+    sql: ${TABLE}.gender ;;
   }
 
   dimension: gender {
@@ -129,7 +128,7 @@ view: age_and_gender_base_fb_adapter {
 
 explore: ad_impressions_age_and_gender_fb_adapter {
   extends: [ad_impressions_base_fb_adapter]
-  hidden: yes
+  hidden: no
   from: ad_impressions_age_and_gender_fb_adapter
   view_name: fact
 
@@ -147,7 +146,7 @@ explore: ad_impressions_age_and_gender_fb_adapter {
 
 view: ad_impressions_age_and_gender_fb_adapter {
   extends: [ad_impressions_fb_adapter, age_and_gender_base_fb_adapter]
-  sql_table_name:  {{ fact.facebook_ads_schema._sql }}.ads_insights ;;
+  sql_table_name:  {{ fact.facebook_ads_schema._sql }}.ads_insights_age_and_gender ;;
 }
 
 view: hour_base_fb_adapter {
@@ -207,7 +206,7 @@ view: platform_and_device_base_fb_adapter {
   dimension: impression_device {
     hidden: yes
     type: string
-    sql: 'desktop' ;;
+    sql: ${TABLE}.device ;;
   }
 
   dimension: device_type {
@@ -285,7 +284,7 @@ view: platform_and_device_base_fb_adapter {
   dimension: publisher_platform_raw {
     hidden: yes
     type: string
-    sql: "facebook" ;;
+    sql: ${TABLE}.platform ;;
   }
 
   dimension: publisher_platform {
@@ -332,7 +331,7 @@ explore: ad_impressions_platform_and_device_fb_adapter {
 
 view: ad_impressions_platform_and_device_fb_adapter {
   extends: [ad_impressions_fb_adapter, platform_and_device_base_fb_adapter]
-  sql_table_name:  {{ fact.facebook_ads_schema._sql }}.ads_insights ;;
+  sql_table_name:  {{ fact.facebook_ads_schema._sql }}.ads_insights_platform_and_device ;;
 }
 
 view: region_base_fb_adapter {
@@ -348,12 +347,10 @@ view: region_base_fb_adapter {
   dimension: country {
     type: string
     map_layer_name: countries
-    sql: "US" ;;
   }
 
   dimension: region {
     type: string
-    sql: "California" ;;
   }
 
   dimension: state {
@@ -383,7 +380,7 @@ explore: ad_impressions_geo_fb_adapter {
 
 view: ad_impressions_geo_fb_adapter {
   extends: [ad_impressions_fb_adapter, region_base_fb_adapter]
-  sql_table_name:  {{ fact.facebook_ads_schema._sql }}.ads_insights ;;
+  sql_table_name:  {{ fact.facebook_ads_schema._sql }}.ads_insights_region ;;
 }
 
 view: actions_fb_adapter {
@@ -393,7 +390,7 @@ view: actions_fb_adapter {
 
 view: actions_age_and_gender_fb_adapter {
   extends: [actions_fb_adapter, age_and_gender_base_fb_adapter]
-  sql_table_name:  {{ actions.facebook_ads_schema._sql }}.ads_insights_actions ;;
+  sql_table_name:  {{ actions.facebook_ads_schema._sql }}.ads_insights_age_and_gender_actions ;;
 
   dimension: age {
     hidden: yes
@@ -414,7 +411,7 @@ view: actions_hour_fb_adapter {
 
 view: actions_platform_and_device_fb_adapter {
   extends: [actions_fb_adapter, platform_and_device_base_fb_adapter]
-  sql_table_name:  {{ actions.facebook_ads_schema._sql }}.ads_insights_actions ;;
+  sql_table_name:  {{ actions.facebook_ads_schema._sql }}.ads_insights_platform_and_device_actions ;;
 
   dimension: device_type {
     hidden: yes
@@ -429,7 +426,7 @@ view: actions_platform_and_device_fb_adapter {
 
 view: actions_region_fb_adapter {
   extends: [actions_fb_adapter, region_base_fb_adapter]
-  sql_table_name:  {{ actions.facebook_ads_schema._sql }}.ads_insights_actions ;;
+  sql_table_name:  {{ actions.facebook_ads_schema._sql }}.ads_insights_region_actions ;;
 
   dimension: country {
     hidden: yes
