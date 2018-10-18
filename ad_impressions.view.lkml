@@ -128,7 +128,7 @@ view: age_and_gender_base_fb_adapter {
 
 explore: ad_impressions_age_and_gender_fb_adapter {
   extends: [ad_impressions_base_fb_adapter]
-  hidden: no
+  hidden: yes
   from: ad_impressions_age_and_gender_fb_adapter
   view_name: fact
 
