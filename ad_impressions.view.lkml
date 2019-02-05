@@ -206,7 +206,7 @@ view: platform_and_device_base_fb_adapter {
   dimension: impression_device {
     hidden: yes
     type: string
-    sql: ${TABLE}.device ;;
+    sql: ${TABLE}.impression_device ;;
   }
 
   dimension: device_type {
@@ -284,7 +284,7 @@ view: platform_and_device_base_fb_adapter {
   dimension: publisher_platform_raw {
     hidden: yes
     type: string
-    sql: ${TABLE}.platform ;;
+    sql: ${TABLE}.publisher_platform ;;
   }
 
   dimension: publisher_platform {
